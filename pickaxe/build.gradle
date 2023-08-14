@@ -4,7 +4,7 @@ repositories {
 }
 
 dependencies {
-    project(":bukkit:mcversion").getSubprojects().forEach(mcv -> implementation mcv)
+    project(":pickaxe:mcversion").getSubprojects().forEach(mcv -> implementation mcv)
 
     compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
 

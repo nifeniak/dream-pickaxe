@@ -42,7 +42,7 @@ public class RegionMineController implements Listener {
                 }
                 if (itemInHand.getEnchantmentLevel(Enchantment.DIG_SPEED) < region.getMinEfficiencyLevel()) {
                     this.messageConfig.toMineInThisRegionYouHaveToHaveHigherEfficiencyLevel.send(source, new MapBuilder<String, Object>()
-                            .put("{LEVEL}", region.getMinEfficiencyLevel())
+                            .put("level", region.getMinEfficiencyLevel())
                             .build());
                     return;
                 }

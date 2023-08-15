@@ -31,6 +31,6 @@ public class MessageConfig extends OkaeriConfig {
     public BukkitNotice youAreNotAllowedToMineThisMaterialInThisRegion = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie możesz wykopać tego bloku.");
     public BukkitNotice youHaveToHavePickaxeInYourHand = new BukkitNotice(MinecraftNoticeType.CHAT, "&cMusisz trzymać kilof w ręce.");
     public BukkitNotice toMineInThisRegionYouHaveToHaveHigherEfficiencyLevel = new BukkitNotice(MinecraftNoticeType.CHAT,
-            "&cAby kopać w tym regionie, musisz mieć co najmniej poziom szybkości {LEVEL}.");
+            "&cAby kopać w tym regionie, musisz mieć co najmniej poziom szybkości {level}.");
 
 }

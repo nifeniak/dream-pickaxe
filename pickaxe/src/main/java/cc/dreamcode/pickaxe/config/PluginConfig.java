@@ -3,6 +3,7 @@ package cc.dreamcode.pickaxe.config;
 import cc.dreamcode.pickaxe.region.Region;
 import cc.dreamcode.platform.bukkit.component.configuration.Configuration;
 import cc.dreamcode.platform.persistence.StorageConfig;
+import cc.dreamcode.utilities.bukkit.ChatUtil;
 import cc.dreamcode.utilities.bukkit.builder.ItemBuilder;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;
@@ -24,14 +25,14 @@ public class PluginConfig extends OkaeriConfig {
     @Comment("Różdżka regionów.")
     public ItemStack regionWand =
             ItemBuilder.of(Material.GOLDEN_AXE)
-                    .setName("&f&lMagiczna Różdżka")
-                    .setLore(
+                    .setName(ChatUtil.fixColor("&f&lMagiczna Różdżka"))
+                    .setLore(ChatUtil.fixColor(
                             "",
                             " &7Oznacz rogi &fzaznaczonego terenu",
                             " &7aby &austawić &7region generatorów!",
                             "",
                             " &7Kliknij &fprawym &7jeden róg regionu.",
-                            " &7Kliknij &flewym &7drugi róg regionu.")
+                            " &7Kliknij &flewym &7drugi róg regionu."))
                     .toItemStack();
 
     @Comment("Regiony")

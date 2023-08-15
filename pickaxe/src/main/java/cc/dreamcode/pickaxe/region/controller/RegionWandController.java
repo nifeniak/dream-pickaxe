@@ -40,17 +40,17 @@ public class RegionWandController implements Listener {
 
         User user = this.userRepository.findOrCreateByHumanEntity(source);
         switch (event.getAction()) {
-            case RIGHT_CLICK_BLOCK: {
+            case LEFT_CLICK_BLOCK: {
                 user.setFirstCorner(corner);
                 user.save();
 
-                this.messageConfig.setFirstCorner.send(source);
+                this.messageConfig.setSecondCorner.send(source);
             }
-            case LEFT_CLICK_BLOCK: {
+            case RIGHT_CLICK_BLOCK: {
                 user.setSecondCorner(corner);
                 user.save();
 
-                this.messageConfig.setSecondCorner.send(source);
+                this.messageConfig.setFirstCorner.send(source);
             }
         }
     }

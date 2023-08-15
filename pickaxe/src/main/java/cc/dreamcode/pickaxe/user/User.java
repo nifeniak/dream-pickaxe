@@ -17,9 +17,9 @@ public class User extends Document {
 
     private String name;
 
-    private transient String regionName;
+    private String regionName;
 
-    private transient Location firstCorner, secondCorner;
+    private Location firstCorner, secondCorner;
 
     public UUID getUniqueId() {
         return this.getPath().toUUID();

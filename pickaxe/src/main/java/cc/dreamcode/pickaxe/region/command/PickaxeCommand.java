@@ -63,6 +63,8 @@ public class PickaxeCommand extends BukkitCommand {
                 this.messageConfig.setRegionName.send(sender);
 
                 this.pluginConfig.regions.add(Region.fromCorners(user.getRegionName(), user.getFirstCorner(), user.getSecondCorner()));
+                this.pluginConfig.save();
+
                 user.setRegionName(null);
                 user.setFirstCorner(null);
                 user.setSecondCorner(null);
@@ -75,6 +77,7 @@ public class PickaxeCommand extends BukkitCommand {
                 for (Region region : new ArrayList<>(this.pluginConfig.regions)) {
                     if (region.getRegion().equalsIgnoreCase(regionName)) {
                         this.pluginConfig.regions.remove(region);
+                        this.pluginConfig.save();
                         this.messageConfig.deletedRegion.send(sender);
                         return;
                     }

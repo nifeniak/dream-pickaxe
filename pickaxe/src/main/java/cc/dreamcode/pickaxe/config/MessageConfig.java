@@ -33,4 +33,7 @@ public class MessageConfig extends OkaeriConfig {
     public BukkitNotice toMineInThisRegionYouHaveToHaveHigherEfficiencyLevel = new BukkitNotice(MinecraftNoticeType.CHAT,
             "&cAby kopać w tym regionie, musisz mieć co najmniej poziom szybkości {level}.");
 
+    public BukkitNotice reloaded = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPrzeladowano.");
+    public BukkitNotice notAllowedTool = new BukkitNotice(MinecraftNoticeType.CHAT,
+            "&cNie mozesz uzywac tego narzedzia w tym regionie, dozwolone &7(&f{allowed}&7)");
 }

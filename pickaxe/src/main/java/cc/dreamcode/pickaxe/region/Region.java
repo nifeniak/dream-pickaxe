@@ -6,6 +6,7 @@ import lombok.Getter;
 import org.bukkit.Location;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import java.util.Set;
 public class Region extends OkaeriConfig {
 
     private String region;
+    private Set<String> allowedTools;
     private Set<String> allowedMaterials;
     private int minEfficiencyLevel;
     private int minX, maxX, minY, maxY, minZ, maxZ;
@@ -30,6 +32,9 @@ public class Region extends OkaeriConfig {
 
         return new Region(
                 region,
+                new HashSet<>(Collections.singletonList(
+                        "STONE_PICKAXE"
+                )),
                 new HashSet<>(Arrays.asList(
                         "STONE",
                         "COBBLESTONE"

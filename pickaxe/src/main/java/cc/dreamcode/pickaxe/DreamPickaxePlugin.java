@@ -4,7 +4,6 @@ import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.notice.minecraft.bukkit.serdes.BukkitNoticeSerdes;
 import cc.dreamcode.pickaxe.config.MessageConfig;
 import cc.dreamcode.pickaxe.config.PluginConfig;
-import cc.dreamcode.pickaxe.mcversion.VersionProvider;
 import cc.dreamcode.pickaxe.region.command.PickaxeCommand;
 import cc.dreamcode.pickaxe.region.controller.RegionMineController;
 import cc.dreamcode.pickaxe.region.controller.RegionWandController;
@@ -40,7 +39,6 @@ public final class DreamPickaxePlugin extends DreamBukkitPlatform implements Dre
 
     @Override
     public void enable(@NonNull ComponentManager componentManager) {
-        this.registerInjectable(VersionProvider.getVersionAccessor());
         this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(BukkitCommandProvider.create(this, this.getInjector()));
 

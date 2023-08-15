@@ -85,6 +85,11 @@ public class PickaxeCommand extends BukkitCommand {
                 this.messageConfig.regionWithThisNameWasNotFound.send(sender);
                 break;
             }
+            case "reload": {
+                this.pluginConfig.load(true);
+                this.messageConfig.reloaded.send(sender);
+                break;
+            }
         }
     }
 

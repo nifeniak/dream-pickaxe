@@ -36,34 +36,39 @@ public class RegionMineController implements Listener {
             if (region.isIn(block.getLocation())) {
                 event.setCancelled(true);
 
-                if (!itemInHand.getType().name().toUpperCase().contains("PICKAXE")) {
-                    this.messageConfig.youHaveToHavePickaxeInYourHand.send(source);
-                    return;
-                }
-                if (itemInHand.getEnchantmentLevel(Enchantment.DIG_SPEED) < region.getMinEfficiencyLevel()) {
-                    this.messageConfig.toMineInThisRegionYouHaveToHaveHigherEfficiencyLevel.send(source, new MapBuilder<String, Object>()
-                            .put("level", region.getMinEfficiencyLevel())
-                            .build());
-                    return;
-                }
-                if (!region.getAllowedMaterials().isEmpty() && !region.getAllowedMaterials().contains(block.getType().name())) {
-                    this.messageConfig.youAreNotAllowedToMineThisMaterialInThisRegion.send(source);
-                    return;
-                }
+                for (String item : region.getAllowedTools()) {
+                    if (itemInHand.getType().name().toUpperCase().contains(item.toUpperCase())) {
+                        if (itemInHand.getEnchantmentLevel(Enchantment.DIG_SPEED) < region.getMinEfficiencyLevel()) {
+                            this.messageConfig.toMineInThisRegionYouHaveToHaveHigherEfficiencyLevel.send(source, new MapBuilder<String, Object>()
+                                    .put("level", region.getMinEfficiencyLevel())
+                                    .build());
+                            return;
+                        }
+                        if (!region.getAllowedMaterials().isEmpty() && !region.getAllowedMaterials().contains(block.getType().name())) {
+                            this.messageConfig.youAreNotAllowedToMineThisMaterialInThisRegion.send(source);
+                            return;
+                        }
 
-                block.getDrops(itemInHand).forEach(itemStack -> source.getInventory().addItem(itemStack));
+                        block.getDrops(itemInHand).forEach(itemStack -> source.getInventory().addItem(itemStack));
 
-                if (this.pluginConfig.setBedrock) {
+                        if (this.pluginConfig.setBedrock) {
 
-                    Material type = block.getType();
-                    block.setType(Material.BEDROCK);
+                            Material type = block.getType();
+                            block.setType(Material.BEDROCK);
 
-                    this.tasker.newDelayer(Duration.ofSeconds(this.pluginConfig.delayInSeconds))
-                            .delayed(() -> block.setType(type))
-                            .executeSync();
-                } else {
-                    block.setType(Material.AIR);
+                            this.tasker.newDelayer(Duration.ofSeconds(this.pluginConfig.delayInSeconds))
+                                    .delayed(() -> block.setType(type))
+                                    .executeSync();
+                        } else {
+                            block.setType(Material.AIR);
+                        }
+                        return;
+                    }
                 }
+                this.messageConfig.notAllowedTool.send(source, new MapBuilder<String, Object>()
+                        .put("allowed", String.join(", ", region.getAllowedTools()))
+                        .build());
+                event.setCancelled(true);
                 return;
             }
         }

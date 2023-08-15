@@ -47,12 +47,14 @@ public class RegionWandController implements Listener {
                 user.save();
 
                 this.messageConfig.setSecondCorner.send(source);
+                break;
             }
             case RIGHT_CLICK_BLOCK: {
                 user.setSecondCorner(corner);
                 user.save();
 
                 this.messageConfig.setFirstCorner.send(source);
+                break;
             }
         }
     }

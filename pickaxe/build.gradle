@@ -4,8 +4,6 @@ repositories {
 }
 
 dependencies {
-    project(":pickaxe:mcversion").getSubprojects().forEach(mcv -> implementation mcv)
-
     compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
 
     implementation "cc.dreamcode.platform:core:1.9.4"

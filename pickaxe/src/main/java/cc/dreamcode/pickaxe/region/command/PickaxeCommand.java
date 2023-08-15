@@ -23,7 +23,7 @@ public class PickaxeCommand extends BukkitCommand {
     private @Inject UserRepository userRepository;
 
     public PickaxeCommand() {
-        super("dreampickaxe");
+        super("pickaxe", "dreampickaxe");
     }
 
     @Override
@@ -43,6 +43,7 @@ public class PickaxeCommand extends BukkitCommand {
         switch (args[0].toLowerCase()) {
             case "wand": {
                 source.getInventory().addItem(this.pluginConfig.regionWand);
+                break;
             }
             case "set": {
                 if (!user.isRegionReady()) {
@@ -67,6 +68,7 @@ public class PickaxeCommand extends BukkitCommand {
                 user.setSecondCorner(null);
 
                 user.save();
+                break;
             }
             case "delete": {
                 String regionName = args[0];
@@ -78,6 +80,7 @@ public class PickaxeCommand extends BukkitCommand {
                     }
                 }
                 this.messageConfig.regionWithThisNameWasNotFound.send(sender);
+                break;
             }
         }
     }

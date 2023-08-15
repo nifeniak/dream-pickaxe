@@ -38,6 +38,8 @@ public class RegionWandController implements Listener {
             }
         }
 
+        event.setCancelled(true);
+
         User user = this.userRepository.findOrCreateByHumanEntity(source);
         switch (event.getAction()) {
             case LEFT_CLICK_BLOCK: {

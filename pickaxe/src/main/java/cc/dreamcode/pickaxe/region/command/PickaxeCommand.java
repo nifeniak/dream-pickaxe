@@ -23,7 +23,7 @@ public class PickaxeCommand extends BukkitCommand {
     private @Inject UserRepository userRepository;
 
     public PickaxeCommand() {
-        super("pickaxe", "dreampickaxe");
+        super("dreampickaxe");
     }
 
     @Override

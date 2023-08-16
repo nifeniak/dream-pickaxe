@@ -25,7 +25,7 @@ public class MessageConfig extends OkaeriConfig {
     public BukkitNotice setRegionName = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPomyślnie ustawiłeś nazwę regionu.");
     public BukkitNotice regionWithThisNameAlreadyExist = new BukkitNotice(MinecraftNoticeType.CHAT, "&cRegion o tej nazwie już istnieje.");
     public BukkitNotice youForgotToSelectCorners = new BukkitNotice(MinecraftNoticeType.CHAT, "&cZapomniałeś ustawić rogi.");
-    public BukkitNotice correctUsage = new BukkitNotice(MinecraftNoticeType.CHAT, "&cPoprawne użycie: &4/pickaxe (wand/set/delete) <nazwa_regionu>");
+    public BukkitNotice correctUsage = new BukkitNotice(MinecraftNoticeType.CHAT, "&cPoprawne użycie: &4/dreampickaxe (wand/set/delete) <nazwa_regionu>");
     public BukkitNotice regionWithThisNameWasNotFound = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie znaleziono regionu o tej nazwie.");
     public BukkitNotice deletedRegion = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPomyślnie usunięto region.");
     public BukkitNotice youAreNotAllowedToMineThisMaterialInThisRegion = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie możesz wykopać tego bloku.");

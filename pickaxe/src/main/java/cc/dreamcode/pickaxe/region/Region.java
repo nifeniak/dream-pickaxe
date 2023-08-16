@@ -3,6 +3,7 @@ package cc.dreamcode.pickaxe.region;
 import eu.okaeri.configs.OkaeriConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Location;
 
 import java.util.Arrays;
@@ -11,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
+@Setter
 @AllArgsConstructor
 public class Region extends OkaeriConfig {
 

@@ -13,7 +13,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredPermission(permission = "dream.pickaxe")
 public class PickaxeCommand extends BukkitCommand {
@@ -90,11 +93,62 @@ public class PickaxeCommand extends BukkitCommand {
                 this.messageConfig.reloaded.send(sender);
                 break;
             }
+            case "efficiency": {
+                String regionName = args[1];
+                for (Region region : new ArrayList<>(this.pluginConfig.regions)) {
+                    if (region.getRegion().equalsIgnoreCase(regionName)) {
+                        String efficiencyLevel = args[2];
+                        int efficiency;
+                        try {
+                            efficiency = Integer.parseInt(efficiencyLevel);
+                            if (efficiency <= 0) {
+                                this.messageConfig.efficiencyCantBeLessThenZero.send(sender);
+                                return;
+                            }
+                            region.setMinEfficiencyLevel(efficiency);
+                            this.messageConfig.successfullySetMinLevel.send(sender);
+                        } catch (NumberFormatException exception) {
+                            this.messageConfig.notNumber.send(sender);
+                        }
+                        return;
+                    }
+                }
+                this.messageConfig.regionWithThisNameWasNotFound.send(sender);
+                break;
+            }
         }
     }
 
     @Override
     public List<String> tab(@NonNull CommandSender sender, @NonNull String[] args) {
-        return null;
+        List<String> result = new ArrayList<>();
+
+        if (sender.hasPermission("dream.pickaxe") && args != null && args.length != 0) {
+            switch (args[0].toLowerCase()) {
+                case "wand":
+                case "reload": {
+                    result = null;
+                    break;
+                }
+                case "set": {
+                    result = Collections.singletonList("text");
+                    break;
+                }
+                case "delete": {
+                    result = this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList());
+                    break;
+                }
+                case "efficiency": {
+                    if (args.length == 1) {
+                        result = this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList());
+                    } else if (args.length == 2) {
+                        result = Arrays.asList("1", "2", "3", "4", "5");
+                    }
+                    break;
+                }
+            }
+        }
+
+        return result;
     }
 }

@@ -25,7 +25,8 @@ public class MessageConfig extends OkaeriConfig {
     public BukkitNotice setRegionName = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPomyślnie ustawiłeś nazwę regionu.");
     public BukkitNotice regionWithThisNameAlreadyExist = new BukkitNotice(MinecraftNoticeType.CHAT, "&cRegion o tej nazwie już istnieje.");
     public BukkitNotice youForgotToSelectCorners = new BukkitNotice(MinecraftNoticeType.CHAT, "&cZapomniałeś ustawić rogi.");
-    public BukkitNotice correctUsage = new BukkitNotice(MinecraftNoticeType.CHAT, "&cPoprawne użycie: &4/dreampickaxe (wand/set/delete) <nazwa_regionu>");
+    public BukkitNotice correctUsage = new BukkitNotice(MinecraftNoticeType.CHAT,
+            "&cPoprawne użycie: &4/dreampickaxe (wand/set/delete/reload) <nazwa_regionu> <poziom>");
     public BukkitNotice regionWithThisNameWasNotFound = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie znaleziono regionu o tej nazwie.");
     public BukkitNotice deletedRegion = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPomyślnie usunięto region.");
     public BukkitNotice youAreNotAllowedToMineThisMaterialInThisRegion = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie możesz wykopać tego bloku.");
@@ -36,4 +37,8 @@ public class MessageConfig extends OkaeriConfig {
     public BukkitNotice reloaded = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPrzeladowano.");
     public BukkitNotice notAllowedTool = new BukkitNotice(MinecraftNoticeType.CHAT,
             "&cNie mozesz uzywac tego narzedzia w tym regionie, dozwolone &7(&f{allowed}&7)");
+    public BukkitNotice notNumber = new BukkitNotice(MinecraftNoticeType.CHAT,
+            "&cPodaj prawidłową liczbę!");
+    public BukkitNotice efficiencyCantBeLessThenZero = new BukkitNotice(MinecraftNoticeType.CHAT, "&cWydajność nie może być mniejsza od zera.");
+    public BukkitNotice successfullySetMinLevel = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPomyslnie ustawiono wydajnosc.");
 }

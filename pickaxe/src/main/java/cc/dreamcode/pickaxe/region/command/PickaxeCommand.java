@@ -51,7 +51,7 @@ public class PickaxeCommand extends BukkitCommand {
                     return;
                 }
 
-                String regionName = args[0];
+                String regionName = args[1];
                 for (Region region : this.pluginConfig.regions) {
                     if (region.getRegion().equalsIgnoreCase(regionName)) {
                         this.messageConfig.regionWithThisNameAlreadyExist.send(sender);
@@ -73,7 +73,7 @@ public class PickaxeCommand extends BukkitCommand {
                 break;
             }
             case "delete": {
-                String regionName = args[0];
+                String regionName = args[1];
                 for (Region region : new ArrayList<>(this.pluginConfig.regions)) {
                     if (region.getRegion().equalsIgnoreCase(regionName)) {
                         this.pluginConfig.regions.remove(region);

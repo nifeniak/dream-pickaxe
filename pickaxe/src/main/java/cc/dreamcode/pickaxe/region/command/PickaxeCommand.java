@@ -127,7 +127,6 @@ public class PickaxeCommand extends BukkitCommand {
             switch (args[0].toLowerCase()) {
                 case "wand":
                 case "reload": {
-                    result = null;
                     break;
                 }
                 case "set": {

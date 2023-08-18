@@ -75,6 +75,11 @@ public class PickaxeCommand extends BukkitCommand {
                 break;
             }
             case "delete": {
+                if (args.length != 2) {
+                    this.messageConfig.correctUsage.send(sender);
+                    return;
+                }
+
                 String regionName = args[1];
                 for (Region region : new ArrayList<>(this.pluginConfig.regions)) {
                     if (region.getRegion().equalsIgnoreCase(regionName)) {
@@ -93,6 +98,11 @@ public class PickaxeCommand extends BukkitCommand {
                 break;
             }
             case "level": {
+                if (args.length != 3) {
+                    this.messageConfig.correctUsage.send(sender);
+                    return;
+                }
+
                 String regionName = args[1];
                 for (Region region : new ArrayList<>(this.pluginConfig.regions)) {
                     if (region.getRegion().equalsIgnoreCase(regionName)) {
@@ -116,6 +126,11 @@ public class PickaxeCommand extends BukkitCommand {
                 break;
             }
             case "blocks": {
+                if (args.length != 4) {
+                    this.messageConfig.correctUsage.send(sender);
+                    return;
+                }
+
                 String regionName = args[1];
                 for (Region region : new ArrayList<>(this.pluginConfig.regions)) {
                     if (region.getRegion().equalsIgnoreCase(regionName)) {

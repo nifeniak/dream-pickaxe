@@ -184,21 +184,35 @@ public class PickaxeCommand extends BukkitCommand {
         if (sender.hasPermission("dream.pickaxe") && args != null) {
             switch (args[0].toLowerCase()) {
                 case "wand":
-                case "reload":
+                case "reload": {
                     break;
-                case "set":
+                }
+                case "set": {
                     result = Collections.singletonList("text");
                     break;
-                case "delete":
+                }
+                case "delete": {
                     result = this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList());
                     break;
-                case "level":
+                }
+                case "level": {
                     if (args.length == 1) {
                         result = this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList());
                     } else if (args.length == 2) {
                         result = Arrays.asList("1", "2", "3", "4", "5");
                     }
                     break;
+                }
+                case "blocks": {
+                    if (args.length == 1) {
+                        result = this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList());
+                    } else if (args.length == 2) {
+                        result = Arrays.asList("add", "remove");
+                    } else if (args.length == 3) {
+                        result = Arrays.asList("STONE", "COBBLESTONE");
+                    }
+                    break;
+                }
             }
         }
 

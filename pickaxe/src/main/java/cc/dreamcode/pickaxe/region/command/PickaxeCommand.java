@@ -7,11 +7,14 @@ import cc.dreamcode.pickaxe.config.PluginConfig;
 import cc.dreamcode.pickaxe.region.Region;
 import cc.dreamcode.pickaxe.user.User;
 import cc.dreamcode.pickaxe.user.UserRepository;
+import cc.dreamcode.utilities.bukkit.ChatUtil;
 import eu.okaeri.injector.annotation.Inject;
 import lombok.NonNull;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +47,20 @@ public class PickaxeCommand extends BukkitCommand {
 
         switch (args[0].toLowerCase()) {
             case "wand": {
-                source.getInventory().addItem(this.pluginConfig.regionWand);
+                ItemStack itemStack = this.pluginConfig.regionWand.clone();
+
+                ItemMeta itemMeta = itemStack.getItemMeta();
+                if (itemMeta == null) {
+                    this.messageConfig.regionWandDoesNotHaveItemMeta.send(source);
+                    return;
+                }
+                itemMeta.setDisplayName(ChatUtil.fixColor(itemMeta.getDisplayName()));
+                if (itemMeta.getLore() != null) {
+                    itemMeta.setLore(ChatUtil.fixColor(itemMeta.getLore()));
+                }
+
+                itemStack.setItemMeta(itemMeta);
+                source.getInventory().addItem(itemStack);
                 break;
             }
             case "set": {
@@ -198,18 +214,19 @@ public class PickaxeCommand extends BukkitCommand {
 
         switch (arg) {
             case "wand":
-            case "reload":
+            case "reload": {
                 break;
-
-            case "set":
-                result = Collections.singletonList("text");
+            }
+            case "set": {
+                result = Collections.singletonList("przykladowa_nazwa_regionu");
                 break;
-
+            }
             case "delete":
             case "level":
-            case "blocks":
+            case "blocks": {
                 result.addAll(this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList()));
                 break;
+            }
         }
 
         if (arg.equals("level") && args.length == 2) {

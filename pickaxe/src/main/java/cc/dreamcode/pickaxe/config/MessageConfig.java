@@ -46,4 +46,5 @@ public class MessageConfig extends OkaeriConfig {
     public BukkitNotice invalidMaterial = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie prawidłowa nazwa materiału!");
     public BukkitNotice addedMaterial = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPomyslnie dodano material!");
     public BukkitNotice removedMaterial = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPomyslnie usunieto material!");
+    public BukkitNotice regionWandDoesNotHaveItemMeta = new BukkitNotice(MinecraftNoticeType.CHAT, "&cRodzka od regionow nie posiada itemmeta!?");
 }

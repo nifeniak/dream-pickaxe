@@ -26,12 +26,21 @@ public class RegionWandController implements Listener {
         Player source = event.getPlayer();
         ItemStack itemInHand = event.getItem();
 
-        if (itemInHand == null || !itemInHand.isSimilar(this.pluginConfig.regionWand) || event.getClickedBlock() == null) {
+        if (pluginConfig.regionWand.getItemMeta() == null) {
+            this.messageConfig.regionWandDoesNotHaveItemMeta.send(source);
+            return;
+        }
+
+        if (itemInHand == null || itemInHand.getItemMeta() == null || event.getClickedBlock() == null) {
+            return;
+        }
+
+        if (!itemInHand.getItemMeta().getDisplayName().equals(pluginConfig.regionWand.getItemMeta().getDisplayName())) {
             return;
         }
 
         Location corner = event.getClickedBlock().getLocation();
-        for (Region region : this.pluginConfig.regions) {
+        for (Region region : pluginConfig.regions) {
             if (region.isIn(corner)) {
                 this.messageConfig.inOtherRegion.send(source);
                 return;

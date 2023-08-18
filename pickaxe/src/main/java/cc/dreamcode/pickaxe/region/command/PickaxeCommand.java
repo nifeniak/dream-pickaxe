@@ -48,6 +48,11 @@ public class PickaxeCommand extends BukkitCommand {
                 break;
             }
             case "set": {
+                if (args.length != 2) {
+                    this.messageConfig.correctUsage.send(sender);
+                    return;
+                }
+
                 if (!user.isRegionReady()) {
                     this.messageConfig.youForgotToSelectCorners.send(sender);
                     return;
@@ -181,7 +186,7 @@ public class PickaxeCommand extends BukkitCommand {
     public List<String> tab(@NonNull CommandSender sender, @NonNull String[] args) {
         List<String> result = new ArrayList<>();
 
-        if (sender.hasPermission("dream.pickaxe") && args != null) {
+        if (sender.hasPermission("dream.pickaxe")) {
             switch (args[0].toLowerCase()) {
                 case "wand":
                 case "reload": {

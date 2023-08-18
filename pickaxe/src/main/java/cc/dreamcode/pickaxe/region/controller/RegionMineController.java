@@ -35,7 +35,6 @@ public class RegionMineController implements Listener {
 
         for (Region region : this.pluginConfig.regions) {
             if (region.isIn(block.getLocation())) {
-                event.setCancelled(true);
 
                 for (String item : region.getAllowedMaterials()) {
                     if (itemInHand.getType().name().toUpperCase().contains(item.toUpperCase())) {

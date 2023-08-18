@@ -16,8 +16,8 @@ public class UserController implements Listener {
     private final UserRepository userRepository;
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
-        final Player player = e.getPlayer();
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
 
         this.tasker.newChain()
                 .async(() -> this.userRepository.findOrCreateByHumanEntity(player))

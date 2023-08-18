@@ -26,11 +26,10 @@ public class MessageConfig extends OkaeriConfig {
     public BukkitNotice regionWithThisNameAlreadyExist = new BukkitNotice(MinecraftNoticeType.CHAT, "&cRegion o tej nazwie już istnieje.");
     public BukkitNotice youForgotToSelectCorners = new BukkitNotice(MinecraftNoticeType.CHAT, "&cZapomniałeś ustawić rogi.");
     public BukkitNotice correctUsage = new BukkitNotice(MinecraftNoticeType.CHAT,
-            "&cPoprawne użycie: &4/dreampickaxe (wand/set/delete/reload) <nazwa_regionu> <poziom>");
+            "&cPoprawne użycie: &4/dreampickaxe (wand/set/delete/reload/blocks/level) <nazwa_regionu> <poziom/add/remove> <material>");
     public BukkitNotice regionWithThisNameWasNotFound = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie znaleziono regionu o tej nazwie.");
     public BukkitNotice deletedRegion = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPomyślnie usunięto region.");
-    public BukkitNotice youAreNotAllowedToMineThisMaterialInThisRegion = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie możesz wykopać tego bloku.");
-    public BukkitNotice youHaveToHavePickaxeInYourHand = new BukkitNotice(MinecraftNoticeType.CHAT, "&cMusisz trzymać kilof w ręce.");
+    public BukkitNotice youAreNotAllowedToMineThisMaterialInThisRegion = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie możesz wykopać tego bloku. &7(&f{allowed}&7)");
     public BukkitNotice toMineInThisRegionYouHaveToHaveHigherEfficiencyLevel = new BukkitNotice(MinecraftNoticeType.CHAT,
             "&cAby kopać w tym regionie, musisz mieć co najmniej poziom szybkości {level}.");
 
@@ -41,4 +40,10 @@ public class MessageConfig extends OkaeriConfig {
             "&cPodaj prawidłową liczbę!");
     public BukkitNotice efficiencyCantBeLessThenZero = new BukkitNotice(MinecraftNoticeType.CHAT, "&cWydajność nie może być mniejsza od zera.");
     public BukkitNotice successfullySetMinLevel = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPomyslnie ustawiono wydajnosc.");
+    public BukkitNotice notAllowedMaterial = new BukkitNotice(MinecraftNoticeType.CHAT,
+            "&cNie mozesz stawiac tego bloku w tym regionie, dozwolone &7(&f{allowed}&7)");
+
+    public BukkitNotice invalidMaterial = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie prawidłowa nazwa materiału!");
+    public BukkitNotice addedMaterial = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPomyslnie dodano material!");
+    public BukkitNotice removedMaterial = new BukkitNotice(MinecraftNoticeType.CHAT, "&aPomyslnie usunieto material!");
 }

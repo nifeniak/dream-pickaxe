@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.time.Duration;
@@ -25,6 +26,30 @@ public class RegionMineController implements Listener {
     private final Tasker tasker;
     private final PluginConfig pluginConfig;
     private final MessageConfig messageConfig;
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onEvent(BlockPlaceEvent event) {
+        Player source = event.getPlayer();
+        Block block = event.getBlock();
+        ItemStack itemInHand = event.getPlayer().getInventory().getItemInMainHand();
+
+        for (Region region : this.pluginConfig.regions) {
+            if (region.isIn(block.getLocation())) {
+                event.setCancelled(true);
+
+                for (String item : region.getAllowedMaterials()) {
+                    if (itemInHand.getType().name().toUpperCase().contains(item.toUpperCase())) {
+                        return;
+                    }
+                }
+                this.messageConfig.notAllowedMaterial.send(source, new MapBuilder<String, Object>()
+                        .put("allowed", String.join(", ", region.getAllowedMaterials()))
+                        .build());
+                event.setCancelled(true);
+                return;
+            }
+        }
+    }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onEvent(BlockBreakEvent event) {
@@ -45,7 +70,9 @@ public class RegionMineController implements Listener {
                             return;
                         }
                         if (!region.getAllowedMaterials().isEmpty() && !region.getAllowedMaterials().contains(block.getType().name())) {
-                            this.messageConfig.youAreNotAllowedToMineThisMaterialInThisRegion.send(source);
+                            this.messageConfig.youAreNotAllowedToMineThisMaterialInThisRegion.send(source, new MapBuilder<String, Object>()
+                                    .put("allowed", String.join(", ", region.getAllowedMaterials()))
+                                    .build());
                             return;
                         }
 

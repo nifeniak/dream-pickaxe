@@ -184,41 +184,44 @@ public class PickaxeCommand extends BukkitCommand {
 
     @Override
     public List<String> tab(@NonNull CommandSender sender, @NonNull String[] args) {
+        if (args.length == 0) {
+            return Collections.emptyList();
+        }
+
         List<String> result = new ArrayList<>();
 
-        if (sender.hasPermission("dream.pickaxe")) {
-            switch (args[0].toLowerCase()) {
-                case "wand":
-                case "reload": {
-                    break;
-                }
-                case "set": {
-                    result = Collections.singletonList("text");
-                    break;
-                }
-                case "delete": {
-                    result = this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList());
-                    break;
-                }
-                case "level": {
-                    if (args.length == 1) {
-                        result = this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList());
-                    } else if (args.length == 2) {
-                        result = Arrays.asList("1", "2", "3", "4", "5");
-                    }
-                    break;
-                }
-                case "blocks": {
-                    if (args.length == 1) {
-                        result = this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList());
-                    } else if (args.length == 2) {
-                        result = Arrays.asList("add", "remove");
-                    } else if (args.length == 3) {
-                        result = Arrays.asList("STONE", "COBBLESTONE");
-                    }
-                    break;
-                }
-            }
+        if (!sender.hasPermission("dream.pickaxe")) {
+            return result;
+        }
+
+        String arg = args[0].toLowerCase();
+
+        switch (arg) {
+            case "wand":
+            case "reload":
+                break;
+
+            case "set":
+                result = Collections.singletonList("text");
+                break;
+
+            case "delete":
+            case "level":
+            case "blocks":
+                result.addAll(this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList()));
+                break;
+        }
+
+        if (arg.equals("level") && args.length == 2) {
+            result.addAll(Arrays.asList("1", "2", "3", "4", "5"));
+        }
+
+        if (arg.equals("blocks") && args.length == 2) {
+            result.addAll(Arrays.asList("add", "remove"));
+        }
+
+        if (arg.equals("blocks") && args.length == 3) {
+            result.addAll(Arrays.asList("STONE", "COBBLESTONE"));
         }
 
         return result;

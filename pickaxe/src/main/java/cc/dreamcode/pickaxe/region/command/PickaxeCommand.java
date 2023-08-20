@@ -115,6 +115,7 @@ public class PickaxeCommand extends BukkitCommand {
             }
             case "reload": {
                 this.pluginConfig.load(true);
+                this.messageConfig.load(true);
                 this.messageConfig.reloaded.send(sender);
                 break;
             }

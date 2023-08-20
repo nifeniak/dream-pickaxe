@@ -5,6 +5,7 @@ import cc.dreamcode.pickaxe.config.PluginConfig;
 import cc.dreamcode.pickaxe.region.Region;
 import cc.dreamcode.pickaxe.user.User;
 import cc.dreamcode.pickaxe.user.UserRepository;
+import cc.dreamcode.utilities.bukkit.ChatUtil;
 import eu.okaeri.injector.annotation.Inject;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Location;
@@ -35,7 +36,7 @@ public class RegionWandController implements Listener {
             return;
         }
 
-        if (!itemInHand.getItemMeta().getDisplayName().equals(pluginConfig.regionWand.getItemMeta().getDisplayName())) {
+        if (!itemInHand.getItemMeta().getDisplayName().equals(ChatUtil.fixColor(pluginConfig.regionWand.getItemMeta().getDisplayName()))) {
             return;
         }
 

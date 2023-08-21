@@ -206,9 +206,9 @@ public class PickaxeCommand extends BukkitCommand {
             return result;
         }
 
-        if (args.length == 0) {
+        if (args.length == 1) {
             result.addAll(Arrays.asList("wand", "reload", "set", "delete", "level", "blocks"));
-        } else if (args.length == 1) {
+        } else if (args.length == 2) {
             switch (args[0].toLowerCase()) {
                 case "wand":
                 case "reload": {
@@ -225,7 +225,7 @@ public class PickaxeCommand extends BukkitCommand {
                     break;
                 }
             }
-        } else if (args.length == 2) {
+        } else if (args.length == 3) {
             switch (args[0].toLowerCase()) {
                 case "level": {
                     result.addAll(Arrays.asList("1", "2", "3", "4", "5"));
@@ -236,7 +236,7 @@ public class PickaxeCommand extends BukkitCommand {
                     break;
                 }
             }
-        } else if (args.length == 3 && args[0].equalsIgnoreCase("blocks")) {
+        } else if (args.length == 4 && args[0].equalsIgnoreCase("blocks")) {
             result.addAll(Arrays.asList("STONE", "COBBLESTONE"));
         }
 

@@ -64,7 +64,7 @@ public class PickaxeCommand extends BukkitCommand {
                 break;
             }
             case "set": {
-                if (args.length != 2) {
+                if (args.length < 2) {
                     this.messageConfig.correctUsage.send(sender);
                     return;
                 }
@@ -96,7 +96,7 @@ public class PickaxeCommand extends BukkitCommand {
                 break;
             }
             case "delete": {
-                if (args.length != 2) {
+                if (args.length < 2) {
                     this.messageConfig.correctUsage.send(sender);
                     return;
                 }
@@ -120,7 +120,7 @@ public class PickaxeCommand extends BukkitCommand {
                 break;
             }
             case "level": {
-                if (args.length != 3) {
+                if (args.length < 3) {
                     this.messageConfig.correctUsage.send(sender);
                     return;
                 }
@@ -148,7 +148,7 @@ public class PickaxeCommand extends BukkitCommand {
                 break;
             }
             case "blocks": {
-                if (args.length != 4) {
+                if (args.length < 4) {
                     this.messageConfig.correctUsage.send(sender);
                     return;
                 }
@@ -212,34 +212,29 @@ public class PickaxeCommand extends BukkitCommand {
         }
 
         String arg = args[0].toLowerCase();
-
-        switch (arg) {
-            case "wand":
-            case "reload": {
-                break;
-            }
-            case "set": {
-                result = Collections.singletonList("przykladowa_nazwa_regionu");
-                break;
-            }
-            case "delete":
-            case "level":
-            case "blocks": {
-                result.addAll(this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList()));
-                break;
-            }
-        }
-
         if (arg.equals("level") && args.length == 2) {
             result.addAll(Arrays.asList("1", "2", "3", "4", "5"));
-        }
-
-        if (arg.equals("blocks") && args.length == 2) {
+        } else if (arg.equals("blocks") && args.length == 2) {
             result.addAll(Arrays.asList("add", "remove"));
-        }
-
-        if (arg.equals("blocks") && args.length == 3) {
+        } else if (arg.equals("blocks") && args.length == 3) {
             result.addAll(Arrays.asList("STONE", "COBBLESTONE"));
+        } else {
+            switch (arg) {
+                case "wand":
+                case "reload": {
+                    break;
+                }
+                case "set": {
+                    result = Collections.singletonList("przykladowa_nazwa_regionu");
+                    break;
+                }
+                case "delete":
+                case "level":
+                case "blocks": {
+                    result.addAll(this.pluginConfig.regions.stream().map(Region::getRegion).collect(Collectors.toList()));
+                    break;
+                }
+            }
         }
 
         return result;

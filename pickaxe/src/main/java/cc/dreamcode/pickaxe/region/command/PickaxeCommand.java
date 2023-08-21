@@ -18,7 +18,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -201,31 +200,22 @@ public class PickaxeCommand extends BukkitCommand {
 
     @Override
     public List<String> tab(@NonNull CommandSender sender, @NonNull String[] args) {
-        if (args.length == 0) {
-            return Collections.emptyList();
-        }
-
         List<String> result = new ArrayList<>();
 
         if (!sender.hasPermission("dream.pickaxe")) {
             return result;
         }
 
-        String arg = args[0].toLowerCase();
-        if (arg.equals("level") && args.length == 2) {
-            result.addAll(Arrays.asList("1", "2", "3", "4", "5"));
-        } else if (arg.equals("blocks") && args.length == 2) {
-            result.addAll(Arrays.asList("add", "remove"));
-        } else if (arg.equals("blocks") && args.length == 3) {
-            result.addAll(Arrays.asList("STONE", "COBBLESTONE"));
-        } else {
-            switch (arg) {
+        if (args.length == 0) {
+            result.addAll(Arrays.asList("wand", "reload", "set", "delete", "level", "blocks"));
+        } else if (args.length == 1) {
+            switch (args[0].toLowerCase()) {
                 case "wand":
                 case "reload": {
                     break;
                 }
                 case "set": {
-                    result = Collections.singletonList("przykladowa_nazwa_regionu");
+                    result.add("przykladowa_nazwa_regionu");
                     break;
                 }
                 case "delete":
@@ -235,6 +225,19 @@ public class PickaxeCommand extends BukkitCommand {
                     break;
                 }
             }
+        } else if (args.length == 2) {
+            switch (args[0].toLowerCase()) {
+                case "level": {
+                    result.addAll(Arrays.asList("1", "2", "3", "4", "5"));
+                    break;
+                }
+                case "blocks": {
+                    result.addAll(Arrays.asList("add", "remove"));
+                    break;
+                }
+            }
+        } else if (args.length == 3 && args[0].equalsIgnoreCase("blocks")) {
+            result.addAll(Arrays.asList("STONE", "COBBLESTONE"));
         }
 
         return result;
